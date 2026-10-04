@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markdown Notes — demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="tag">Backend + Frontend demo</p>
+    <h1>Markdown Notes</h1>
+    <p class="desc">Markdown is rendered to HTML on the server (a hand-written parser in <code>/api/render</code>), then saved to the notes API.</p>
+  </header>
+
+  <div class="card">
+    <input id="title" type="text" placeholder="Note title" value="Untitled" style="margin-bottom:10px">
+    <div class="split">
+      <div>
+        <label>Markdown</label>
+        <textarea id="editor" rows="10"># Hello
+
+Type **Markdown** here…</textarea>
+      </div>
+      <div>
+        <label>Rendered on the server</label>
+        <div class="preview" id="preview"></div>
+      </div>
+    </div>
+    <button id="save">Save note</button>
+  </div>
+
+  <div class="card">
+    <label>Saved notes</label>
+    <div id="list"></div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/" id="source-link" target="_blank" rel="noopener">View source on GitHub</a>
+  </footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

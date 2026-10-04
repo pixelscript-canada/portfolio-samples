@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Currency Converter — demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="tag">Backend + Frontend demo</p>
+    <h1>Currency Converter</h1>
+    <p class="desc">The backend fetches live exchange rates and does the conversion — the frontend never talks to the rates API directly.</p>
+  </header>
+
+  <div class="card">
+    <div class="row">
+      <input id="amount" type="number" value="100" min="0" step="any">
+      <button class="swap" id="swap" title="Swap currencies">⇄</button>
+      <select id="to">
+        <option value="CAD">CAD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+        <option value="USD">USD</option>
+      </select>
+    </div>
+    <div class="row" style="grid-template-columns:1fr">
+      <select id="from">
+        <option value="USD">USD — US Dollar</option>
+        <option value="CAD">CAD — Canadian Dollar</option>
+        <option value="EUR">EUR — Euro</option>
+        <option value="GBP">GBP — British Pound</option>
+        <option value="JPY">JPY — Japanese Yen</option>
+      </select>
+    </div>
+    <button class="convert" id="go">Convert</button>
+    <div id="error" class="error"></div>
+    <div class="result" id="result" style="display:none">
+      <div class="amount" id="amount-out"></div>
+      <div class="rate" id="rate-out"></div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/" id="source-link" target="_blank" rel="noopener">View source on GitHub</a>
+  </footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

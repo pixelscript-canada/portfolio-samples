@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Password Toolkit — demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="tag">Backend + Frontend demo</p>
+    <h1>Password Toolkit</h1>
+    <p class="desc">Passwords are generated with Node's <code>crypto.randomInt</code> on the server, and strength is scored there too.</p>
+  </header>
+
+  <div class="card">
+    <div class="pw-out">
+      <input id="output" type="text" readonly>
+      <button id="copy" class="ghost">Copy</button>
+    </div>
+    <div class="slider-row">
+      <span>Length</span>
+      <input type="range" id="length" min="6" max="48" value="16">
+      <span id="length-val">16</span>
+    </div>
+    <div class="options">
+      <label><input type="checkbox" id="upper" checked> Uppercase</label>
+      <label><input type="checkbox" id="numbers" checked> Numbers</label>
+      <label><input type="checkbox" id="symbols" checked> Symbols</label>
+    </div>
+    <button id="generate">Generate password</button>
+  </div>
+
+  <div class="card">
+    <strong>Check your own password</strong>
+    <input type="text" id="check" placeholder="Type a password to score it" style="margin-top:10px">
+    <div class="strength-bar"><div class="strength-fill" id="fill"></div></div>
+    <div class="strength-label" id="label"></div>
+    <div class="issues" id="issues"></div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/" id="source-link" target="_blank" rel="noopener">View source on GitHub</a>
+  </footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

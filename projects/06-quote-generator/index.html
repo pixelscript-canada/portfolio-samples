@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quote Generator — demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="tag">Backend + Frontend demo</p>
+    <h1>Quote Generator</h1>
+    <p class="desc">Every quote comes from the backend. Favorites are saved server-side, not in local storage.</p>
+  </header>
+
+  <div class="card">
+    <blockquote id="text">Loading…</blockquote>
+    <p class="author" id="author"></p>
+    <div class="actions">
+      <button id="next">Next quote</button>
+      <button class="ghost" id="fav">★ Save favorite</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <strong>Favorites</strong>
+    <div id="list" class="list"></div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/" id="source-link" target="_blank" rel="noopener">View source on GitHub</a>
+  </footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
