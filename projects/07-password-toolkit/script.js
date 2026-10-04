@@ -38,11 +38,7 @@ async function scorePassword(password) {
     return;
   }
 
-  const res = await fetch('/api/score', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ password }),
-  });
+  const res = await fetch(`/api/score?password=${encodeURIComponent(password)}`);
   const data = await res.json();
   fill.style.width = `${(data.score / 4) * 100}%`;
   fill.style.background = COLORS[data.score];
