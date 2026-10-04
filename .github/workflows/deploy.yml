@@ -1,0 +1,57 @@
+name: Deploy demo projects
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'projects/**'
+  workflow_dispatch: {}
+
+concurrency:
+  group: vercel-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      # On a normal push, only redeploy the project folders that actually
+      # changed. On a manual run (workflow_dispatch), redeploy everything —
+      # useful after rotating a secret or as a sanity check.
+      - name: Determine changed projects
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            DIRS=$(find projects -mindepth 1 -maxdepth 1 -type d | sort)
+          else
+            DIRS=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- projects \
+              | awk -F/ 'NF>=2 {print "projects/"$2}' | sort -u)
+          fi
+          echo "dirs<<DELIM" >> "$GITHUB_OUTPUT"
+          echo "$DIRS" >> "$GITHUB_OUTPUT"
+          echo "DELIM" >> "$GITHUB_OUTPUT"
+          echo "Projects to deploy:"
+          echo "$DIRS"
+
+      - name: Deploy changed projects to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          while IFS= read -r dir; do
+            [ -z "$dir" ] && continue
+            if [ ! -f "$dir/.vercel/project.json" ]; then
+              echo "::warning::Skipping $dir — no .vercel/project.json, not linked to a Vercel project yet"
+              continue
+            fi
+            echo "::group::Deploying $dir"
+            (cd "$dir" && vercel --prod --yes --token="$VERCEL_TOKEN")
+            echo "::endgroup::"
+          done <<< "${{ steps.changed.outputs.dirs }}"
