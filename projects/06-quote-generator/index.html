@@ -4,27 +4,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quote Generator — demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap">
   <header>
-    <p class="tag">Backend + Frontend demo</p>
-    <h1>Quote Generator</h1>
-    <p class="desc">Every quote comes from the backend. Favorites are saved server-side, not in local storage.</p>
+    <p class="tag">Backend + frontend demo</p>
+    <h1>The Broadside Press</h1>
+    <p class="desc">Every quote is set by the backend. Favorites are saved server-side — a real piece of state, not a trick in local storage.</p>
   </header>
 
-  <div class="card">
+  <div class="plate">
+    <span class="mark" aria-hidden="true">&ldquo;</span>
     <blockquote id="text">Loading…</blockquote>
     <p class="author" id="author"></p>
     <div class="actions">
-      <button id="next">Next quote</button>
-      <button class="ghost" id="fav">★ Save favorite</button>
+      <button id="next">Pull another</button>
+      <button class="ghost" id="fav">Keep this one</button>
     </div>
   </div>
 
   <div class="card">
-    <strong>Favorites</strong>
+    <strong>Kept</strong>
     <div id="list" class="list"></div>
   </div>
 
