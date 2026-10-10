@@ -4,35 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Markdown Notes — demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap">
   <header>
-    <p class="tag">Backend + Frontend demo</p>
-    <h1>Markdown Notes</h1>
-    <p class="desc">Markdown is rendered to HTML on the server (a hand-written parser in <code>/api/render</code>), then saved to the notes API.</p>
+    <p class="tag">Backend + Frontend demo — Manuscript No. 1</p>
+    <h1>The Editor's Desk</h1>
+    <p class="desc">Markdown is set to type on the server (a hand-written parser in <code>/api/render</code>), then filed to the notes API — the manuscript on the left, the typeset page on the right.</p>
   </header>
 
   <div class="card">
-    <input id="title" type="text" placeholder="Note title" value="Untitled" style="margin-bottom:10px">
+    <input id="title" type="text" placeholder="Note title" value="Untitled">
     <div class="split">
-      <div>
-        <label>Markdown</label>
+      <div class="pane">
+        <label>manuscript</label>
         <textarea id="editor" rows="10"># Hello
 
 Type **Markdown** here…</textarea>
       </div>
-      <div>
-        <label>Rendered on the server</label>
+      <div class="pane">
+        <label>typeset page</label>
         <div class="preview" id="preview"></div>
       </div>
     </div>
-    <button id="save">Save note</button>
+    <button id="save">File this note</button>
   </div>
 
   <div class="card">
-    <label>Saved notes</label>
+    <label>filed notes</label>
     <div id="list"></div>
   </div>
 
