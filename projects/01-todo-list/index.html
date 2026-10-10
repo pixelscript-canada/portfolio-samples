@@ -4,24 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Todo List API — demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <p class="tag">Backend + Frontend demo</p>
-    <h1>Todo List API</h1>
-    <p class="desc">Tasks are stored server-side via a REST API (<code>/api/todos</code>). Add, complete and delete — every action is a real HTTP call.</p>
-  </header>
+  <div class="pad">
+    <header>
+      <p class="tag">backend + frontend demo</p>
+      <h1>The Daily Docket</h1>
+      <p class="desc">Every line on this pad is a real row on the server — <code>/api/todos</code> stores it, checks it off, and deletes it. Nothing here is just localStorage pretending.</p>
+    </header>
 
-  <div class="card">
     <form id="form" class="row">
-      <input id="title" type="text" placeholder="Add a task…" required>
+      <span class="prompt">&gt;</span>
+      <input id="title" type="text" placeholder="type a task and hit add…" required autocomplete="off">
       <button type="submit">Add</button>
     </form>
-  </div>
 
-  <div class="card">
     <div id="list" class="list"></div>
   </div>
 
