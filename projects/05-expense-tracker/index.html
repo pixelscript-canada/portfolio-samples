@@ -4,32 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Expense Tracker — demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <p class="tag">Backend + Frontend demo</p>
-    <h1>Expense Tracker</h1>
-    <p class="desc">The backend aggregates totals and category breakdowns on every request — the frontend just renders numbers it's handed.</p>
-  </header>
+  <div class="ledger">
+    <header>
+      <p class="tag">Ledger · backend + frontend demo</p>
+      <h1>General Account</h1>
+      <p class="desc">Every entry posts to the server — the backend totals the book and breaks it down by category on every request. The page only ever displays what it's handed.</p>
+    </header>
 
-  <div class="card">
     <form id="form" class="grid3">
-      <input id="label" type="text" placeholder="What did you buy?" required>
-      <input id="amount" type="number" step="0.01" min="0.01" placeholder="Amount" required>
+      <input id="label" type="text" placeholder="What did you buy?" required autocomplete="off">
+      <input id="amount" type="number" step="0.01" min="0.01" placeholder="0.00" required>
       <input id="category" type="text" placeholder="Category" value="Other">
     </form>
-    <button type="submit" form="form">Add expense</button>
+    <button type="submit" form="form">Post entry</button>
     <div id="error" class="error"></div>
-  </div>
 
-  <div class="card">
-    <div class="total" id="total">$0.00<span>Total spent</span></div>
-    <div id="categories"></div>
-  </div>
+    <div class="total" id="total">$0.00<span>Balance posted</span></div>
+    <div id="categories" class="categories"></div>
 
-  <div class="card">
+    <p class="section-label">Entries</p>
     <div id="list" class="list"></div>
   </div>
 
