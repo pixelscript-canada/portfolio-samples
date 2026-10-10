@@ -14,11 +14,25 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+
+      # Vercel's CLI checks that the HEAD commit's author email matches a
+      # Vercel team member before it will create a deployment from CI — a
+      # mismatch here silently "Blocks" the deployment and vercel --prod
+      # then hangs polling it forever (this is what cost us a 6-hour stuck
+      # run once already). Pin the author explicitly so a bad local git
+      # config can never cause that again, regardless of what authored the
+      # commit.
+      - name: Normalize commit author for Vercel's permission check
+        run: |
+          git config user.name "mohammad"
+          git config user.email "mohammadelia30@gmail.com"
+          git commit --amend --no-edit --reset-author --allow-empty
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
@@ -52,6 +66,11 @@ jobs:
               continue
             fi
             echo "::group::Deploying $dir"
-            (cd "$dir" && vercel --prod --yes --token="$VERCEL_TOKEN")
+            (cd "$dir" && timeout 300 vercel --prod --yes --token="$VERCEL_TOKEN")
+            status=$?
             echo "::endgroup::"
+            if [ $status -ne 0 ]; then
+              echo "::error::Deploy of $dir failed or timed out (exit $status)"
+              exit $status
+            fi
           done <<< "${{ steps.changed.outputs.dirs }}"
