@@ -4,33 +4,43 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>URL Shortener — demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="scanlines"></div>
 <div class="wrap">
-  <header>
-    <p class="tag">Backend + Frontend demo</p>
-    <h1>URL Shortener</h1>
-    <p class="desc">Paste a long URL and get back a short code. The backend generates the code, stores the mapping, and 302-redirects on visit.</p>
-  </header>
-
-  <div class="card">
-    <form id="form" class="row">
-      <input id="url" type="url" placeholder="https://example.com/a/very/long/path" required>
-      <button type="submit">Shorten</button>
-    </form>
-    <div id="result" class="result">
-      Short link: <a id="short-link" target="_blank" rel="noopener"></a>
+  <div class="terminal">
+    <div class="titlebar">
+      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      <span class="path">guest@shortener — 80×24</span>
     </div>
-    <div id="error" class="error"></div>
-  </div>
+    <div class="screen">
+      <p class="line comment"># backend + frontend demo</p>
+      <h1 class="line">$ man url-shortener</h1>
+      <p class="line dim">Paste a URL, the server mints a code, stores the mapping, and<br>302-redirects anyone who visits it. Nothing client-side.</p>
 
-  <div class="card">
-    <div id="list" class="list"></div>
+      <form id="form" class="row">
+        <span class="prompt">$ shorten</span>
+        <input id="url" type="url" placeholder="https://example.com/a/very/long/path" required autocomplete="off">
+        <button type="submit">run</button>
+      </form>
+      <div id="result" class="result">
+        <span class="arrow">→</span> <a id="short-link" target="_blank" rel="noopener"></a>
+      </div>
+      <div id="error" class="error"></div>
+
+      <p class="line comment" style="margin-top:22px">$ history --all</p>
+      <div id="list" class="list"></div>
+
+      <p class="blink-row"><span class="prompt">$</span><span class="cursor"></span></p>
+    </div>
   </div>
 
   <footer>
-    <a href="https://github.com/" id="source-link" target="_blank" rel="noopener">View source on GitHub</a>
+    <a href="https://github.com/" id="source-link" target="_blank" rel="noopener">view source on github</a>
   </footer>
 </div>
 <script src="script.js"></script>
