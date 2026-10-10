@@ -39,13 +39,28 @@ form.addEventListener('submit', async (e) => {
 
   const days = document.getElementById('days');
   days.innerHTML = '';
+
+  const highs = data.daily.temperature_2m_max.slice(0, 5);
+  const lows = data.daily.temperature_2m_min.slice(0, 5);
+  const weekMax = Math.max(...highs);
+  const weekMin = Math.min(...lows);
+  const span = Math.max(1, weekMax - weekMin);
+
   data.daily.time.slice(0, 5).forEach((date, i) => {
+    const hi = Math.round(highs[i]);
+    const lo = Math.round(lows[i]);
+    const top = ((weekMax - highs[i]) / span) * 100;
+    const bottom = ((lows[i] - weekMin) / span) * 100;
+
     const el = document.createElement('div');
     el.className = 'day';
     el.innerHTML = `
+      <div class="hi">${hi}°</div>
+      <div class="track">
+        <div class="bar" style="top:${top}%;bottom:${bottom}%"></div>
+      </div>
+      <div class="lo">${lo}°</div>
       <div class="d">${dayLabel(date)}</div>
-      <div class="hi">${Math.round(data.daily.temperature_2m_max[i])}°</div>
-      <div class="lo">${Math.round(data.daily.temperature_2m_min[i])}°</div>
     `;
     days.appendChild(el);
   });

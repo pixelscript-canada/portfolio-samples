@@ -4,30 +4,35 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Weather Dashboard — demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="sky"></div>
 <div class="wrap">
   <header>
     <p class="tag">Backend + Frontend demo</p>
-    <h1>Weather Dashboard</h1>
+    <h1>Station Report</h1>
     <p class="desc">The backend geocodes your city and proxies a free forecast API — no key needed, no CORS issues.</p>
   </header>
 
-  <div class="card">
+  <div class="card search-card">
     <form id="form" class="row">
-      <input id="city" type="text" placeholder="Toronto" required>
+      <input id="city" type="text" placeholder="Toronto" required autocomplete="off">
       <button type="submit">Search</button>
     </form>
     <div id="error" class="error"></div>
   </div>
 
-  <div id="result" class="card" style="display:none">
+  <div id="result" class="card result-card" style="display:none">
     <p class="place" id="place"></p>
     <div class="current">
       <span class="temp" id="temp"></span>
       <span class="meta" id="meta"></span>
     </div>
+    <p class="chart-label">5-day range</p>
     <div class="days" id="days"></div>
   </div>
 
